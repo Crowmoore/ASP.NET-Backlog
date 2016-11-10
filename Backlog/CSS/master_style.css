@@ -1,0 +1,12 @@
+﻿.parallax-container {
+    height: 400px;
+}
+
+.card-container {
+    width: 50%;
+    justify-content: center;
+}
+
+.card {
+    width: 400px;
+}
