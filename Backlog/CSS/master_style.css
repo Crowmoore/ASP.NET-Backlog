@@ -1,12 +1,30 @@
-﻿.parallax-container {
+﻿body {
+    background: #BDBDBD;
+}
+
+.parallax-container {
     height: 400px;
 }
 
 .card-container {
-    width: 50%;
-    justify-content: center;
+    width: 20%;
+    margin: 0 auto;
+    min-width: 300px;
 }
 
-.card {
-    width: 400px;
+.card-action input[type=submit] {
+    background: none;
+    border: none;
+    color: #DBA901;
+    font-size: 1.3em;
+    margin-right: 20px;
+    transition: all 0.2s ease-in;
+}
+
+.card-action input[type=submit]:hover {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    margin-right: 20px;
 }
