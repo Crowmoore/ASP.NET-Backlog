@@ -10,12 +10,13 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
     <link rel="stylesheet" href="CSS/master_style.css"/>
+    <link rel="stylesheet" href="CSS/main_style.css" />
 </head>
 <body>
     <div class="parallax-container">
-        <div class="parallax"><img src="http://cdn.playbuzz.com/cdn/925704be-9b8e-4dfc-852e-f24d720cb9c5/bcf39e88-5731-43bb-9d4b-e5b3b2b1fdf2.jpg" /></div>
+        <div class="parallax"><img src="Images/banner.png" /></div>
     </div>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" autocomplete="off">
     <div>
         <asp:ContentPlaceHolder ID="Header" runat="server">
         </asp:ContentPlaceHolder>
@@ -30,6 +31,8 @@
     <script>
         $(document).ready(function () {
             $('.parallax').parallax();
+            $('.modal').modal();
+            $('select').material_select();
         });
     </script>
 </body>

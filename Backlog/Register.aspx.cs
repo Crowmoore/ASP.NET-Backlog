@@ -16,11 +16,33 @@ namespace Backlog
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+            Validator validator = new Validator();
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
+            string email = tbEmail.Text;
+            if (validator.Validate(username, password, email))
+            {
+                Registeration register = new Registeration(username, password, email);
+                if (register.RegisterUser())
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                else
+                {
+                    lblError.Text = this.Session["Error"].ToString();
+                }
+            }
 
+            else
+            {
+                lblError.Text = this.Session["Error"].ToString();
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            tbUsername.Text = string.Empty;
+            tbEmail.Text = string.Empty;
             Response.Redirect("Login.aspx");
         }
     }
