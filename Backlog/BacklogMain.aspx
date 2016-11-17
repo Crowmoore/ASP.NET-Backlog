@@ -6,40 +6,39 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="signed-in-div">
         <asp:Label ID="lblUser" runat="server"></asp:Label>
-        <a href="#">Sign out</a>
+        <a href="Logout.aspx">Sign out</a>
     </div>
     <div class="main-container">
+        <div class="error-div">
+            <asp:Label ID="lblError" runat="server"></asp:Label>
+        </div>
+        <ul>
         <asp:ListView ID="lvGames" runat="server">
             <ItemTemplate>
-                <ul>
                     <li>
                     <div id="game-card-div" class="card teal z-depth-3">
                         <div class="card-content">
                             <span class="card-title activator white-text">
-                                <asp:Label runat="server" Text='<%# Eval("Title") %>'/>
+                                <asp:Label runat="server" Text='<%# Eval("name") %>'/>
                                 <i class="material-icons right">more_vert</i>
                             </span>
                         </div>
                         <div class="card-reveal teal">
-                            <ul>
-                                <li>
                                     <div class="game-card-contents">
                                         <span class="card-title white-text">
-                                        <asp:Label runat="server" Text='<%# Eval("Title") %>'/>
-                                        <asp:Button runat="server" ID="btnEdit" Text="Edit" OnClick="btnEdit_Click" />
-                                        <asp:Button runat="server" ID="btnDelete" Text="Delete" OnClick="btnDelete_Click" />
+                                        <asp:TextBox runat="server" Text='<%# Eval("name") %>' Font-Size="Large"/>
+                                        <asp:LinkButton runat="server" ID="btnEdit" Text="Edit" OnClick="btnEdit_Click" />
+                                        <asp:LinkButton runat="server" ID="btnDelete" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' Text="Delete" OnClick="btnDelete_Click" />
                                         <i class="material-icons right">close</i>
                                         </span>
                                     </div>
-                                </li>
-                            </ul>
                             
                         </div>
                     </div>
                     </li>
-                </ul>
             </ItemTemplate>
-        </asp:ListView>    
+        </asp:ListView>   
+        </ul> 
     </div>
     <div>
         <a class="fixed btn-floating teal add-button tooltipped" data-position="left" data-tooltip="Add a new game" href="#addGame"><i class="material-icons">add</i></a>

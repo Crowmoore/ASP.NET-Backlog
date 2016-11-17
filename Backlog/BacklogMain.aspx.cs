@@ -2,33 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Backlog
-{
+{ 
     public partial class BacklogMain : System.Web.UI.Page
     {
+        protected DataTable table;
+        protected DataView view;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(this.Session["user"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
-            else if(!IsPostBack)
+            else
             {
                 lblUser.Text = string.Format("Welcome, {0}!", this.Session["user"]);
-                PopulateGridView();
-                PopulateGenreList();
-                PopulateStatusList();
+                LoadData();
             }
+        }
+
+        protected void LoadData()
+        {
+            PopulateGridView();
+            PopulateGenreList();
+            PopulateStatusList();
         }
 
         protected void PopulateGridView()
         {
-            //gvGames.DataSource = Database.GetAllUsersGamesFromDatabase(this.Session["user"].ToString());
-            lvGames.DataSource = Database.GetTestData();
-            lvGames.DataBind();
+            try
+            {
+                lvGames.DataSource = Database.GetAllUsersGamesFromDatabase(Session["user"].ToString());
+                lvGames.DataBind();
+            } catch(Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+            
         }
 
         protected void PopulateGenreList()
@@ -64,16 +79,30 @@ namespace Backlog
             try
             {
                 Database.AddNewGame(user, title, achievements, status, comment, genre);
+                lblError.Text = string.Format("Game {0} added to database", title);
+                LoadData();
             }
             catch (Exception ex)
             {
-
+                lblError.Text = ex.Message;
             }
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-
+            LinkButton button = sender as LinkButton;
+            try
+            {
+                int id = int.Parse(button.Attributes["GameID"]);
+                string title = button.Attributes["GameTitle"];
+                Database.DeleteGameFromDatabase(id);
+                LoadData();
+                lblError.Text = string.Format("{0} successfully removed from database", title);
+            } catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
+
     }
 }

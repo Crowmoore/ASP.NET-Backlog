@@ -61,6 +61,21 @@
     transition: all 0.2s ease-in;
 }
 
+.game-card-contents a {
+    background: none;
+    border: none;
+    color: #DBA901;
+    font-size: 1.3em;
+    transition: all 0.2s ease-in;
+}
+
+.game-card-contents a:hover {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.3em;
+}
+
 .game-card-contents input[type=submit]:hover {
     background: none;
     border: none;

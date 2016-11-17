@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="parallax-container">
-        <div class="parallax"><img src="Images/banner.png" /></div>
+        <div class="parallax"><img class="responsive img" src="Images/banner.png" /></div>
     </div>
     <form id="form1" runat="server" autocomplete="off">
     <div>

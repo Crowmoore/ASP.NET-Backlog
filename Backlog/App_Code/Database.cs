@@ -79,6 +79,36 @@ namespace Backlog
             return verified;
         }
 
+        public static DataTable GetUser(string user)
+        {
+            MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            try
+            {
+                connection.Open();
+                string query = "SELECT uid, email, password, hash, verified " +
+                               "FROM user " +
+                               "WHERE uid = @UID";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Prepare();
+                command.Parameters.AddWithValue("@UID", user);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataSet set = new DataSet();
+                adapter.Fill(set, "user");
+                return set.Tables["user"];
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         public static bool AddUserToDatabase(string uid, string password, string email, string hash)
         {
             MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
