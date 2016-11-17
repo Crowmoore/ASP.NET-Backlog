@@ -13,7 +13,7 @@
             <ItemTemplate>
                 <ul>
                     <li>
-                    <div class="card teal">
+                    <div id="game-card-div" class="card teal z-depth-3">
                         <div class="card-content">
                             <span class="card-title activator white-text">
                                 <asp:Label runat="server" Text='<%# Eval("Title") %>'/>
@@ -24,9 +24,10 @@
                             <ul>
                                 <li>
                                     <div class="game-card-contents">
-                                        <span class="card-title">
-                                        <asp:TextBox runat="server" Text='<%# Eval("Title") %>'/>
-                                        <asp:Button runat="server" ID="btnSave" Text="Save" />
+                                        <span class="card-title white-text">
+                                        <asp:Label runat="server" Text='<%# Eval("Title") %>'/>
+                                        <asp:Button runat="server" ID="btnEdit" Text="Edit" OnClick="btnEdit_Click" />
+                                        <asp:Button runat="server" ID="btnDelete" Text="Delete" OnClick="btnDelete_Click" />
                                         <i class="material-icons right">close</i>
                                         </span>
                                     </div>
@@ -41,18 +42,38 @@
         </asp:ListView>    
     </div>
     <div>
-        <a class="fixed btn-floating teal add-button" href="#addGame"><i class="material-icons">add</i></a>
+        <a class="fixed btn-floating teal add-button tooltipped" data-position="left" data-tooltip="Add a new game" href="#addGame"><i class="material-icons">add</i></a>
         <div id="addGame" class="modal teal">
             <div class="modal-content">
                 <h4>Add new game</h4>
                 <div class="input-field">
                     <asp:TextBox ID="tbTitle" runat="server"></asp:TextBox>
                     <label for="tbTitle">Title</label>
-                    <br />
-      
-            
-                    <asp:Button ID="btnAdd" runat="server" Text="Add" />
                 </div>
+                <div class="input-field">
+                    <asp:DropDownList ID="ddlGenres" runat="server">
+                    </asp:DropDownList>
+                    <label>Genre</label>
+                </div>
+                <div class="input-field achievements">
+                    <asp:TextBox ID="tbAchievementsGained" runat="server"></asp:TextBox>
+                    <label for="tbAchievementsGained">Achievements gained</label>
+                </div>
+                <div class="input-field achievements">
+                    <asp:TextBox ID="tbAchievementsTotal" runat="server"></asp:TextBox>
+                    <label for="tbAchievementsTotal">Achievements total</label>
+                </div>
+                <div class="input-field">
+                    <asp:DropDownList ID="ddlStatus" runat="server">
+                    </asp:DropDownList>
+                    <label>Status</label>
+                </div>
+                <div class="input-field">
+                    <asp:TextBox ID="tbComment" runat="server" MaxLength="200"></asp:TextBox>
+                    <label for="tbComment">Comment</label>
+                </div>
+                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"/>
+                
             </div>
             
         </div>    

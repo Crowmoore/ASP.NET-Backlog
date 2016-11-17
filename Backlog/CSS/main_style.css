@@ -12,6 +12,12 @@
 .modal {
     width: 20%;
     color: #FFFFFF;
+    min-width: 300px !important;
+    overflow: visible !important;
+}
+
+.achievements input[type=text] {
+    width: 150px;
 }
 
 .modal input[type=submit] {
@@ -43,12 +49,14 @@
 .game-card-contents input[type=text] {
     width: 200px;
     color: #FFFFFF;
+    overflow: visible !important;
 }
 
 .game-card-contents input[type=submit] {
     background: none;
     border: none;
     color: #DBA901;
+    margin-left: 30px;
     font-size: 1.3em;
     transition: all 0.2s ease-in;
 }

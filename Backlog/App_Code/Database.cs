@@ -229,6 +229,33 @@ namespace Backlog
             }
         }
 
+        public static DataTable GetAllStatusFromDatabase()
+        {
+            MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
+            try
+            {
+                connection.Open();
+                string query = "SELECT name FROM progress";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Prepare();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataSet set = new DataSet();
+                adapter.Fill(set, "progress");
+                return set.Tables["progress"];
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         public static void DeleteGameFromDatabase(int id)
         {
             MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);
