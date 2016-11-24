@@ -4,16 +4,19 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="signed-in-div">
-        <asp:Label ID="lblUser" runat="server"></asp:Label>
-        <a href="Logout.aspx">Sign out</a>
-    </div>
-    <div class="search-div input-field">
-        <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
-        <label for="tbSearch">Search by title</label>
-        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"/>
-    </div>
     <div class="main-container">
+    <div class="search-div input-field">
+        <asp:Label runat="server" Text="Search by"></asp:Label>
+        <asp:DropDownList ID="ddlSearch" runat="server" OnSelectedIndexChanged="ddlSearch_SelectedIndexChanged">
+            <asp:ListItem Text="Title" Value="Title"></asp:ListItem>
+            <asp:ListItem Text="Genre" Value="Genre"></asp:ListItem>
+            <asp:ListItem Text="Status" Value="Status"></asp:ListItem>
+        </asp:DropDownList>
+        <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"/>
+        <asp:Button ID="btnShowAll" runat="server" Text="Show all" OnClick="btnShowAll_Click"/>
+    </div>
+    <div class="main-card-container">
         <div class="error-div">
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </div>
@@ -24,6 +27,7 @@
                     <div id="game-card-div" class="card teal z-depth-3">
                         <div class="card-content">
                             <span class="card-title activator white-text">
+                                <img src="https://cdn.tutsplus.com/psd/uploads/legacy/psdtutsarticles/linkb_60vgamecovers/35.jpg" width="150" />
                                 <asp:Label runat="server" Text='<%# Eval("name") %>'/>
                                 <!--<asp:Label runat="server" Text='<%# Eval("genre") %>' />
                                 <asp:Label runat="server" Text='<%# Eval("status") %>' />-->
@@ -45,6 +49,11 @@
             </ItemTemplate>
         </asp:ListView>   
         </ul> 
+    </div>
+    <div class="signed-in-div">
+        <asp:Label ID="lblUser" runat="server"></asp:Label>
+        <a href="Logout.aspx">Sign out</a>
+    </div>
     </div>
     <div>
         <a class="fixed btn-floating teal add-button tooltipped" data-position="left" data-tooltip="Add a new game" href="#addGame"><i class="material-icons">add</i></a>

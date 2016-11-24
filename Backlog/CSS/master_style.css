@@ -1,5 +1,5 @@
 ﻿body {
-    background: #000000;
+    background: #01A9DB;
 }
 
 .parallax-container {
@@ -53,5 +53,6 @@
 }
 
 .error-div span {
-    color: red;
+    color: #FFFFFF;
+    font-size: medium;
 }

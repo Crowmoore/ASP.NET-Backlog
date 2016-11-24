@@ -15,7 +15,15 @@ namespace Backlog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(this.Session["user"] == null)
+            if (!IsPostBack)
+            {
+                CheckIfUserIsLoggedIn(Session["user"].ToString());
+            }
+        }
+
+        protected void CheckIfUserIsLoggedIn(string user)
+        {
+            if (user == null)
             {
                 Response.Redirect("Login.aspx");
             }
@@ -31,13 +39,16 @@ namespace Backlog
             PopulateGridView();
             PopulateGenreList();
             PopulateStatusList();
+            Session["selection"] = "Title";
         }
 
         protected void PopulateGridView()
         {
             try
             {
-                lvGames.DataSource = Database.GetAllUsersGamesFromDatabase(Session["user"].ToString());
+                table = Database.GetAllUsersGamesFromDatabase(Session["user"].ToString());
+                view = table.DefaultView;
+                lvGames.DataSource = view;
                 lvGames.DataBind();
             } catch(Exception ex)
             {
@@ -136,7 +147,34 @@ namespace Backlog
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            string search = tbSearch.Text;
+            DataTable dataTable = Database.GetAllUsersGamesFromDatabase(Session["user"].ToString());
+            DataView dataView = dataTable.DefaultView;
 
+            switch(Session["selection"].ToString())
+            {
+                case "Title": dataView.RowFilter = string.Format("name LIKE '%{0}%'", search); break;
+                case "Genre": dataView.RowFilter = string.Format("genre LIKE '%{0}%'", search); break;
+                case "Status": dataView.RowFilter = string.Format("status LIKE '%{0}%'", search); break;
+                default: dataView.RowFilter = string.Empty; break;
+            }
+
+            lvGames.DataSource = dataView;
+            lvGames.DataBind();
+        }
+
+        protected void ddlSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["selection"] = ddlSearch.SelectedValue.ToString();
+        }
+
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = Database.GetAllUsersGamesFromDatabase(Session["user"].ToString());
+            DataView dataView = dataTable.DefaultView;
+            dataView.RowFilter = string.Empty;
+            lvGames.DataSource = dataView;
+            lvGames.DataBind();
         }
     }
 }

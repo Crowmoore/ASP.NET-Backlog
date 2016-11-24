@@ -1,15 +1,34 @@
-﻿.signed-in-div {
+﻿.main-container {
+    width: 100%;
+    align-content: center;
+}
+
+.signed-in-div {
+    float: left;
+    width: 20%;
     text-align: right;
     margin-right: 30px;
+    margin-left: 3%;
     margin-top: 10px;
     color: white;
 }
 
+.signed-in-div a {
+    color: #DBA901;
+    transition: all 0.2s ease-in;
+}
+
+.signed-in-div a:hover {
+    color: #FFFFFF;
+}
+
 .search-div {
-    width: 250px;
+    float: left;
+    width: 20%;
     color: white;
     text-align: left;
     margin-left: 30px;
+    margin-right: 3%;
     margin-top: 30px;
 }
 
@@ -28,9 +47,10 @@
     font-size: 1.3em;
 }
 
-.main-container {
+.main-card-container {
+    float: left;
     width: 50%;
-    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .modal {

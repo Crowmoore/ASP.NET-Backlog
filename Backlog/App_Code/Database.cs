@@ -153,7 +153,8 @@ namespace Backlog
                                "FROM game " +
                                "LEFT JOIN progress ON game.progress_idprogress = progress.idprogress " +
                                "LEFT JOIN genre ON game.genre_idgenre = genre.idgenre " +
-                               "WHERE user_uid = @UID";
+                               "WHERE user_uid = @UID " +
+                               "ORDER BY game.name ASC";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Prepare();
                 command.Parameters.AddWithValue("@UID", user);
