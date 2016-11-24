@@ -48,23 +48,48 @@ namespace Backlog
 
         protected void PopulateGenreList()
         {
-            ddlGenres.DataSource = Database.GetAllGenresFromDatabase();
+            DataTable genres = Database.GetAllGenresFromDatabase();
+
+            ddlGenres.DataSource = genres; 
             ddlGenres.DataTextField = "name";
             ddlGenres.DataValueField = "name";
-            ddlGenres.DataBind(); 
+            ddlGenres.DataBind();
+
+            ddlEditGenre.DataSource = genres;
+            ddlEditGenre.DataTextField = "name";
+            ddlEditGenre.DataValueField = "name";
+            ddlEditGenre.DataBind();
         }
 
         protected void PopulateStatusList()
         {
-            ddlStatus.DataSource = Database.GetAllStatusFromDatabase();
+            DataTable status = Database.GetAllStatusFromDatabase();
+
+            ddlStatus.DataSource = status;
             ddlStatus.DataTextField = "name";
             ddlStatus.DataValueField = "name";
             ddlStatus.DataBind();
+
+            ddlEditStatus.DataSource = status;
+            ddlEditStatus.DataTextField = "name";
+            ddlEditStatus.DataValueField = "name";
+            ddlEditStatus.DataBind();
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            
+            LinkButton button = sender as LinkButton;
+            try
+            {
+                int id = int.Parse(button.Attributes["GameID"]);
+                string title = button.Attributes["GameTitle"];
+                tbEditTitle.Text = title;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "key", "$('#editGame').modal('open'); return false;", true);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -104,5 +129,14 @@ namespace Backlog
             }
         }
 
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            lblError.Text = tbEditTitle.Text;   
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
