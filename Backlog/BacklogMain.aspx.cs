@@ -66,10 +66,10 @@ namespace Backlog
             ddlGenres.DataValueField = "name";
             ddlGenres.DataBind();
 
-            ddlEditGenre.DataSource = genres;
-            ddlEditGenre.DataTextField = "name";
-            ddlEditGenre.DataValueField = "name";
-            ddlEditGenre.DataBind();
+            //ddlEditGenre.DataSource = genres;
+            //ddlEditGenre.DataTextField = "name";
+            //ddlEditGenre.DataValueField = "name";
+            //ddlEditGenre.DataBind();
         }
 
         protected void PopulateStatusList()
@@ -81,10 +81,10 @@ namespace Backlog
             ddlStatus.DataValueField = "name";
             ddlStatus.DataBind();
 
-            ddlEditStatus.DataSource = status;
-            ddlEditStatus.DataTextField = "name";
-            ddlEditStatus.DataValueField = "name";
-            ddlEditStatus.DataBind();
+            //ddlEditStatus.DataSource = status;
+            //ddlEditStatus.DataTextField = "name";
+            //ddlEditStatus.DataValueField = "name";
+            //ddlEditStatus.DataBind();
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -94,7 +94,6 @@ namespace Backlog
             {
                 int id = int.Parse(button.Attributes["GameID"]);
                 string title = button.Attributes["GameTitle"];
-                tbEditTitle.Text = title;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "key", "$('#editGame').modal('open'); return false;", true);
             }
             catch (Exception ex)
@@ -138,11 +137,6 @@ namespace Backlog
             {
                 lblError.Text = ex.Message;
             }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            lblError.Text = tbEditTitle.Text;   
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

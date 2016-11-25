@@ -27,22 +27,28 @@
                     <div id="game-card-div" class="card teal z-depth-3">
                         <div class="card-content">
                             <span class="card-title activator white-text">
-                                <img src="https://cdn.tutsplus.com/psd/uploads/legacy/psdtutsarticles/linkb_60vgamecovers/35.jpg" width="150" />
-                                <asp:Label runat="server" Text='<%# Eval("name") %>'/>
-                                <!--<asp:Label runat="server" Text='<%# Eval("genre") %>' />
-                                <asp:Label runat="server" Text='<%# Eval("status") %>' />-->
                                 <i class="material-icons right">more_vert</i>
+                                <asp:Label runat="server" Text='<%# Eval("name") %>' Font-Size="XX-Large"/>
+                                <br />
+                                <asp:Label runat="server" Text='<%# string.Concat("Status: ", Eval("status")) %>' />
+                                <asp:Label runat="server" Text='<%# string.Concat("Genre: ", Eval("genre")) %>' />
+                                <br />
+                                <asp:Label runat="server" Text='<%# string.Concat("Achievements: ", Eval("achievements")) %>' />
+                                <asp:Label runat="server" Text='<%# string.Concat("Comments: ", Eval("comment")) %>' />
                             </span>
                         </div>
                         <div class="card-reveal teal">
-                                    <div class="game-card-contents">
-                                        <span class="card-title white-text">
-                                        <asp:LinkButton runat="server" ID="btnEdit" Text="Edit" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' GameGenre='<%# Eval("genre") %>' OnClick="btnEdit_Click" />
-                                        <asp:LinkButton runat="server" ID="btnDelete" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' Text="Delete" OnClick="btnDelete_Click" />
-                                        <i class="material-icons right">close</i>
-                                        </span>
-                                    </div>
-                            
+                            <div class="game-card-contents">
+                                <span class="card-title white-text">
+                                <i class="material-icons right">close</i>
+                                <asp:TextBox ID="tbEditTitle" runat="server" Text='<%# Eval("name") %>'></asp:TextBox>
+                                <br />
+                                <asp:DropDownList ID="ddlEditStatus" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlEditGenre" runat="server"></asp:DropDownList>
+                                <asp:LinkButton runat="server" ID="btnEdit" Text="Edit" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' GameGenre='<%# Eval("genre") %>' OnClick="btnEdit_Click" />
+                                <asp:LinkButton runat="server" ID="btnDelete" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' Text="Delete" OnClick="btnDelete_Click" />
+                                </span>
+                            </div>                            
                         </div>
                     </div>
                     </li>
@@ -91,41 +97,6 @@
             </div>
             
         </div>
-
-        <div id="editGame" class="modal teal">
-            <div class="modal-content">
-                <h4>Edit game info</h4>
-                <div class="input-field">
-                    <asp:TextBox ID="tbEditTitle" runat="server"></asp:TextBox>
-                    <label for="tbTitle">Title</label>
-                </div>
-                <div class="input-field">
-                    <asp:DropDownList ID="ddlEditGenre" runat="server">
-                    </asp:DropDownList>
-                    <label>Genre</label>
-                </div>
-                <div class="input-field achievements">
-                    <asp:TextBox ID="tbEditGained" runat="server"></asp:TextBox>
-                    <label for="tbAchievementsGained">Achievements gained</label>
-                </div>
-                <div class="input-field achievements">
-                    <asp:TextBox ID="tbEditTotal" runat="server"></asp:TextBox>
-                    <label for="tbAchievementsTotal">Achievements total</label>
-                </div>
-                <div class="input-field">
-                    <asp:DropDownList ID="ddlEditStatus" runat="server">
-                    </asp:DropDownList>
-                    <label>Status</label>
-                </div>
-                <div class="input-field">
-                    <asp:TextBox ID="tbEditComment" runat="server" MaxLength="200"></asp:TextBox>
-                    <label for="tbComment">Comment</label>
-                </div>
-                <asp:Button ID="Save" runat="server" Text="Save" OnClick="btnSave_Click"/>
-                
-            </div>
-            
-        </div> 
     </div>
     
 

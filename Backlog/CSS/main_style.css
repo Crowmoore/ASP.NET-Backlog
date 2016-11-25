@@ -105,6 +105,12 @@
     transition: all 0.2s ease-in;
 }
 
+.game-card-contents .select-wrapper {
+    width: 200px;
+    color: #FFFFFF;
+    overflow: visible !important;
+}
+
 .game-card-contents a {
     background: none;
     border: none;

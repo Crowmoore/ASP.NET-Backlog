@@ -92,9 +92,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\Database.cs" />
-    <Compile Include="App_Code\Registeration.cs" />
-    <Compile Include="App_Code\Validator.cs" />
+    <Compile Include="Old_App_Code\Database.cs" />
+    <Compile Include="Old_App_Code\Registeration.cs" />
+    <Compile Include="Old_App_Code\Validator.cs" />
     <Compile Include="Backlog.Master.cs">
       <DependentUpon>Backlog.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
