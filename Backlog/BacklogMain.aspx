@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Backlog.Master" AutoEventWireup="true" CodeBehind="BacklogMain.aspx.cs" Inherits="Backlog.BacklogMain" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Backlog.Master" AutoEventWireup="True" CodeBehind="BacklogMain.aspx.cs" Inherits="Backlog.BacklogMain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="server">
@@ -30,23 +30,21 @@
                                 <i class="material-icons right">more_vert</i>
                                 <asp:Label runat="server" Text='<%# Eval("name") %>' Font-Size="XX-Large"/>
                                 <br />
-                                <asp:Label runat="server" Text='<%# string.Concat("Status: ", Eval("status")) %>' />
-                                <asp:Label runat="server" Text='<%# string.Concat("Genre: ", Eval("genre")) %>' />
+                                <asp:Label CssClass="game-info" runat="server" Text='<%# Eval("status") %>' />
+                                <asp:Label CssClass="game-info" runat="server" Text='<%# Eval("genre") %>' />
+                                <asp:Label CssClass="game-info" runat="server" Text='<%# string.Concat("Achievements ", Eval("achievements")) %>' />
                                 <br />
-                                <asp:Label runat="server" Text='<%# string.Concat("Achievements: ", Eval("achievements")) %>' />
-                                <asp:Label runat="server" Text='<%# string.Concat("Comments: ", Eval("comment")) %>' />
+                                <asp:Label CssClass="game-info" runat="server" Text='<%# Eval("comment") %>' Font-Size="Smaller"/>
                             </span>
                         </div>
                         <div class="card-reveal teal">
                             <div class="game-card-contents">
                                 <span class="card-title white-text">
                                 <i class="material-icons right">close</i>
-                                <asp:TextBox ID="tbEditTitle" runat="server" Text='<%# Eval("name") %>'></asp:TextBox>
+                                <asp:Label runat="server" Text='<%# Eval("name") %>' Font-Size="XX-Large"/>
                                 <br />
-                                <asp:DropDownList ID="ddlEditStatus" runat="server"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlEditGenre" runat="server"></asp:DropDownList>
-                                <asp:LinkButton runat="server" ID="btnEdit" Text="Edit" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' GameGenre='<%# Eval("genre") %>' OnClick="btnEdit_Click" />
-                                <asp:LinkButton runat="server" ID="btnDelete" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' Text="Delete" OnClick="btnDelete_Click" />
+                                <asp:LinkButton runat="server" ID="btnEdit" Text="Edit" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' GameGenre='<%# Eval("genre") %>' GameStatus='<%# Eval("status") %>' GameAchievements='<%# Eval("achievements") %>' GameComment='<%# Eval("comment") %>' OnClick="btnEdit_Click" />
+                                <asp:LinkButton runat="server" ID="btnDelete" GameID='<%# Eval("idgame") %>' GameTitle='<%# Eval("name") %>' Text="Delete" OnClientClick="return confirm('Are you sure you want to permanently remove this entry?');" OnClick="btnDelete_Click" />
                                 </span>
                             </div>                            
                         </div>
@@ -78,10 +76,12 @@
                 <div class="input-field achievements">
                     <asp:TextBox ID="tbAchievementsGained" runat="server"></asp:TextBox>
                     <label for="tbAchievementsGained">Achievements gained</label>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="tbAchievementsGained" runat="server" ErrorMessage="Only numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                 </div>
                 <div class="input-field achievements">
                     <asp:TextBox ID="tbAchievementsTotal" runat="server"></asp:TextBox>
                     <label for="tbAchievementsTotal">Achievements total</label>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="tbAchievementsTotal" runat="server" ErrorMessage="Only numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                 </div>
                 <div class="input-field">
                     <asp:DropDownList ID="ddlStatus" runat="server">

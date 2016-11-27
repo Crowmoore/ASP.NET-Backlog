@@ -15,10 +15,9 @@ namespace Backlog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                CheckIfUserIsLoggedIn(Session["user"].ToString());
-            }
+            
+            CheckIfUserIsLoggedIn(Session["user"].ToString());
+            
         }
 
         protected void CheckIfUserIsLoggedIn(string user)
@@ -65,11 +64,6 @@ namespace Backlog
             ddlGenres.DataTextField = "name";
             ddlGenres.DataValueField = "name";
             ddlGenres.DataBind();
-
-            //ddlEditGenre.DataSource = genres;
-            //ddlEditGenre.DataTextField = "name";
-            //ddlEditGenre.DataValueField = "name";
-            //ddlEditGenre.DataBind();
         }
 
         protected void PopulateStatusList()
@@ -80,11 +74,6 @@ namespace Backlog
             ddlStatus.DataTextField = "name";
             ddlStatus.DataValueField = "name";
             ddlStatus.DataBind();
-
-            //ddlEditStatus.DataSource = status;
-            //ddlEditStatus.DataTextField = "name";
-            //ddlEditStatus.DataValueField = "name";
-            //ddlEditStatus.DataBind();
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -94,7 +83,17 @@ namespace Backlog
             {
                 int id = int.Parse(button.Attributes["GameID"]);
                 string title = button.Attributes["GameTitle"];
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "key", "$('#editGame').modal('open'); return false;", true);
+                string genre = button.Attributes["GameGenre"];
+                string status = button.Attributes["GameStatus"];
+                string achievements = button.Attributes["GameAchievements"];
+                string comment = button.Attributes["GameComment"];
+                Application["ID"] = id;
+                Application["Title"] = title;
+                Application["Genre"] = genre;
+                Application["Status"] = status;
+                Application["Achievements"] = achievements;
+                Application["Comment"] = comment;
+                Response.Redirect("Edit.aspx");
             }
             catch (Exception ex)
             {
@@ -132,7 +131,7 @@ namespace Backlog
                 string title = button.Attributes["GameTitle"];
                 Database.DeleteGameFromDatabase(id);
                 LoadData();
-                lblError.Text = string.Format("{0} successfully removed from database", title);
+                lblError.Text = string.Format("Entry: {0} successfully removed", title);
             } catch (Exception ex)
             {
                 lblError.Text = ex.Message;

@@ -71,7 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BacklogMain.aspx" />
+    <Content Include="CSS\edit_style.css" />
     <Content Include="CSS\main_style.css" />
+    <Content Include="Edit.aspx" />
     <Content Include="Images\banner.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -92,6 +94,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BacklogMain.aspx.designer.cs">
+      <DependentUpon>BacklogMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Old_App_Code\Database.cs" />
     <Compile Include="Old_App_Code\Registeration.cs" />
     <Compile Include="Old_App_Code\Validator.cs" />
@@ -105,9 +117,6 @@
     <Compile Include="BacklogMain.aspx.cs">
       <DependentUpon>BacklogMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BacklogMain.aspx.designer.cs">
-      <DependentUpon>BacklogMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

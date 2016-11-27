@@ -4,22 +4,28 @@
 }
 
 .signed-in-div {
-    float: left;
-    width: 20%;
+    position: relative;
+    width: 100%;
     text-align: right;
-    margin-right: 30px;
-    margin-left: 3%;
-    margin-top: 10px;
     color: white;
 }
 
 .signed-in-div a {
+    margin-right: 30px;
+    margin-top: 10px;
     color: #DBA901;
     transition: all 0.2s ease-in;
 }
 
 .signed-in-div a:hover {
     color: #FFFFFF;
+}
+
+.game-info {
+    margin-right: 30px;
+    word-wrap: normal;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .search-div {
