@@ -15,9 +15,14 @@ namespace Backlog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            CheckIfUserIsLoggedIn(Session["user"].ToString());
-            
+            if(!IsPostBack)
+            {
+                CheckIfUserIsLoggedIn(Session["user"].ToString());
+            }
+            else
+            {
+                PopulateGridView();
+            }
         }
 
         protected void CheckIfUserIsLoggedIn(string user)
@@ -104,9 +109,10 @@ namespace Backlog
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             string title = tbTitle.Text;
-            string genre = ddlGenres.SelectedValue;
+            string genre = ddlGenres.SelectedValue.ToString();
+            lblError.Text = genre;
             string achievements = string.Format("{0}/{1}", tbAchievementsGained.Text, tbAchievementsTotal.Text);
-            string status = ddlStatus.SelectedValue;
+            string status = ddlStatus.SelectedValue.ToString();
             string comment = tbComment.Text;
             string user = this.Session["user"].ToString();
 

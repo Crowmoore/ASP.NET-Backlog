@@ -29,13 +29,13 @@ namespace Backlog
                 }
                 else
                 {
-                    lblError.Text = this.Session["Error"].ToString();
+                    lblError.Text = "Could not register at this time. Please try again later.";
                 }
             }
 
             else
             {
-                lblError.Text = this.Session["Error"].ToString();
+                lblError.Text = "Please fill the information correctly";
             }
         }
 
