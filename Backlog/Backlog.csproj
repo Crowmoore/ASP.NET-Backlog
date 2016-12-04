@@ -72,7 +72,7 @@
   <ItemGroup>
     <Content Include="BacklogMain.aspx" />
     <Content Include="CSS\edit_style.css" />
-    <Content Include="CSS\main_style.css" />
+    <Content Include="CSS\main.css" />
     <Content Include="Default.aspx" />
     <Content Include="Edit.aspx" />
     <Content Include="Images\banner.png" />

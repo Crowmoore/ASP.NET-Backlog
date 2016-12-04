@@ -11,15 +11,12 @@ namespace Backlog
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                CheckIfUserIsLoggedIn(Session["user"].ToString());
-            }
+            CheckIfUserIsLoggedIn();
         }
 
-        protected void CheckIfUserIsLoggedIn(string user)
+        protected void CheckIfUserIsLoggedIn()
         {
-            if (user == null)
+            if (Session["user"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
@@ -31,7 +28,7 @@ namespace Backlog
 
         protected void InitializeForm()
         {
-            lblUser.Text = string.Format("Welcome, {0}!", this.Session["user"]);
+            lblUser.Text = string.Format("Welcome, {0}!", Session["user"]);
             int id = int.Parse(Application["ID"].ToString());
             lblEdit.Text = string.Format("Editing entry {0}", id);
             PopulateGenreList();

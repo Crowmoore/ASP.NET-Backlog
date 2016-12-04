@@ -63,6 +63,7 @@
     width: 20%;
     color: #FFFFFF;
     min-width: 300px !important;
+    min-height: 580px !important;
     overflow: visible !important;
 }
 
@@ -137,4 +138,14 @@
     border: none;
     color: #FFFFFF;
     font-size: 1.3em;
+}
+
+#ContentPlaceHolder1_lvGames_DataPager1 a {
+    color: white;
+    font-size: 20px;
+}
+
+#ContentPlaceHolder1_lvGames_DataPager1 span {
+    color: #DBA901;
+    font-size: 20px;
 }

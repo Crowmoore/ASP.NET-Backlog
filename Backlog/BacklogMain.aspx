@@ -21,7 +21,23 @@
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </div>
         <ul>
-        <asp:ListView ID="lvGames" runat="server">
+        <asp:ListView ID="lvGames" runat="server" OnPagePropertiesChanging="lvGames_PagePropertiesChanging" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1">
+            
+        <LayoutTemplate>
+            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                <asp:DataPager ID="DataPager1" runat="server" PagedControlID="lvGames" PageSize="5">
+                    <Fields>
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
+                            ShowNextPageButton="false" />
+                        <asp:NumericPagerField ButtonType="Link" />
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton = "false" />
+                    </Fields>
+                </asp:DataPager>
+        </LayoutTemplate>
+        <GroupTemplate>
+            <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+        </GroupTemplate>
+        
             <ItemTemplate>
                     <li>
                     <div id="game-card-div" class="card teal z-depth-3">

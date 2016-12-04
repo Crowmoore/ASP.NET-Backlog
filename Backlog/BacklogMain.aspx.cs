@@ -15,38 +15,38 @@ namespace Backlog
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            CheckIfUserIsLoggedIn();
             if(!IsPostBack)
             {
-                CheckIfUserIsLoggedIn(Session["user"].ToString());
+                LoadData();
             }
             else
             {
-                PopulateGridView();
+                PopulateGamesList();
             }
         }
 
-        protected void CheckIfUserIsLoggedIn(string user)
+        protected void CheckIfUserIsLoggedIn()
         {
-            if (user == null)
+            if (Session["user"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
             else
             {
-                lblUser.Text = string.Format("Welcome, {0}!", this.Session["user"]);
-                LoadData();
+                lblUser.Text = string.Format("Welcome, {0}!", Session["user"]);
             }
         }
 
         protected void LoadData()
         {
-            PopulateGridView();
+            PopulateGamesList();
             PopulateGenreList();
             PopulateStatusList();
             Session["selection"] = "Title";
         }
 
-        protected void PopulateGridView()
+        protected void PopulateGamesList()
         {
             try
             {
@@ -119,13 +119,24 @@ namespace Backlog
             try
             {
                 Database.AddNewGame(user, title, achievements, status, comment, genre);
-                lblError.Text = string.Format("Game {0} added to database", title);
+                lblError.Text = string.Format("{0} added to database", title);
                 LoadData();
+                ClearAddForm();
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
+        }
+
+        protected void ClearAddForm()
+        {
+            tbTitle.Text = string.Empty;
+            ddlGenres.SelectedIndex = 0;
+            tbAchievementsGained.Text = string.Empty;
+            tbAchievementsTotal.Text = string.Empty;
+            ddlStatus.SelectedIndex = 0;
+            tbComment.Text = string.Empty;
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -137,7 +148,7 @@ namespace Backlog
                 string title = button.Attributes["GameTitle"];
                 Database.DeleteGameFromDatabase(id);
                 LoadData();
-                lblError.Text = string.Format("Entry: {0} successfully removed", title);
+                lblError.Text = string.Format("{0} successfully removed", title);
             } catch (Exception ex)
             {
                 lblError.Text = ex.Message;
@@ -174,6 +185,12 @@ namespace Backlog
             dataView.RowFilter = string.Empty;
             lvGames.DataSource = dataView;
             lvGames.DataBind();
+        }
+
+        protected void lvGames_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            (lvGames.FindControl("DataPager1") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            this.PopulateGamesList();
         }
     }
 }
