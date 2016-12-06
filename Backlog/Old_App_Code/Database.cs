@@ -14,10 +14,10 @@ namespace Backlog
         {
             DataTable table = new DataTable();
 
-            table.Columns.Add("Title", typeof(string));
-            table.Columns.Add("Achievements", typeof(string));
-            table.Columns.Add("Status", typeof(string));
-            table.Columns.Add("Comments", typeof(string));
+            table.Columns.Add("title", typeof(string));
+            table.Columns.Add("achievements", typeof(string));
+            table.Columns.Add("status", typeof(string));
+            table.Columns.Add("comment", typeof(string));
 
             table.Rows.Add("Jazzpunk", "10/24", "Finished", "");
             table.Rows.Add("Cities: Skylines", "15/30", "In progress", "");
@@ -34,6 +34,7 @@ namespace Backlog
             return table;
         }
 
+        //Checks that user is found on the database and the account is verified
         public static bool CheckUsersCredentialsFromDatabase(string user, string password)
         {
             int verified = 1;

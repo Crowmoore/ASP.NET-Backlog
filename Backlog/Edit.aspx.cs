@@ -11,7 +11,10 @@ namespace Backlog
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckIfUserIsLoggedIn();
+            if(!IsPostBack)
+            {
+                CheckIfUserIsLoggedIn();
+            }
         }
 
         protected void CheckIfUserIsLoggedIn()

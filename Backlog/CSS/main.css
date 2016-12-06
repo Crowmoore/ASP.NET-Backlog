@@ -1,5 +1,6 @@
 ﻿.main-container {
     width: 100%;
+    min-width: 550px;
     align-content: center;
 }
 
@@ -10,10 +11,15 @@
     color: white;
 }
 
+.signed-in-div span {
+    white-space: nowrap;
+}
+
 .signed-in-div a {
     margin-right: 30px;
     margin-top: 10px;
     color: #DBA901;
+    white-space: nowrap;
     transition: all 0.2s ease-in;
 }
 
@@ -61,6 +67,7 @@
 
 .modal {
     width: 20%;
+    max-height: 90%;
     color: #FFFFFF;
     min-width: 300px !important;
     min-height: 580px !important;

@@ -41,6 +41,7 @@
             <ItemTemplate>
                     <li>
                     <div id="game-card-div" class="card teal z-depth-3">
+
                         <div class="card-content">
                             <span class="card-title activator white-text">
                                 <i class="material-icons right">more_vert</i>
@@ -53,6 +54,7 @@
                                 <asp:Label CssClass="game-info" runat="server" Text='<%# Eval("comment") %>' Font-Size="Smaller"/>
                             </span>
                         </div>
+
                         <div class="card-reveal teal">
                             <div class="game-card-contents">
                                 <span class="card-title white-text">
@@ -77,6 +79,7 @@
     </div>
     <div>
         <a class="fixed btn-floating teal add-button tooltipped" data-position="left" data-tooltip="Add a new game" href="#addGame"><i class="material-icons">add</i></a>
+
         <div id="addGame" class="modal teal">
             <div class="modal-content">
                 <h4>Add new game</h4>

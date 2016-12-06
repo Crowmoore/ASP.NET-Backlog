@@ -81,6 +81,7 @@ namespace Backlog
             ddlStatus.DataBind();
         }
 
+        //Redirects to Edit page with game data as Application variables
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             LinkButton button = sender as LinkButton;
@@ -190,7 +191,7 @@ namespace Backlog
         protected void lvGames_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             (lvGames.FindControl("DataPager1") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            this.PopulateGamesList();
+            PopulateGamesList();
         }
     }
 }

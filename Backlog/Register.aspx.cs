@@ -35,7 +35,7 @@ namespace Backlog
 
             else
             {
-                lblError.Text = "Please fill the information correctly";
+                lblError.Text = HttpContext.Current.Session["Error"].ToString();
             }
         }
 

@@ -9,14 +9,14 @@
     </asp:ContentPlaceHolder>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
-    <link rel="stylesheet" href="CSS/master_style.css"/>
+    <link rel="stylesheet" href="CSS/master.css"/>
     <link rel="stylesheet" href="CSS/main.css" />
     <link rel="stylesheet" href="CSS/edit_style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div class="parallax-container">
-        <div class="parallax"><img class="responsive img" src="Images/banner.png" /></div>
+    <div class="banner">
+        <img src="Images/banner_smaller.png" />
     </div>
     <form id="form1" runat="server" autocomplete="off">
     <div>
@@ -32,7 +32,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.parallax').parallax();
             $('.modal').modal();
             $('select').material_select();
             $('.tooltipped').tooltip({ delay: 50 });

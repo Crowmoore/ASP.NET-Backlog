@@ -76,6 +76,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Edit.aspx" />
     <Content Include="Images\banner.png" />
+    <Content Include="Images\banner_smaller.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
@@ -88,7 +89,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CSS\master_style.css" />
+    <Content Include="CSS\master.css" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
